@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Calender } from './Component';
 
-function App() {
+const App = () => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    setDate(new Date(event.currentTarget.value))
+  }
+
+  const [date, setDate] = React.useState<Date>(new Date())
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={'container mt-5'}>
+      <div className={'row'}>
+        <div className={'col-4'}>
+          <div className={'mb-3'}>
+            <label htmlFor={'dateinput'} className={'form-label'}>Date Input</label>
+            <input type={'date'} name={'datein'} className={'form-control'} id={'dateinput'} onChange={handleChange}/>
+          </div>
+        </div>
+        <div className={'col-8'}>
+          <Calender date={date}/>
+        </div>
+      </div>
     </div>
   );
 }
